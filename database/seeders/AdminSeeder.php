@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superadmin@yopmail.com',
             'phone_no' => '9876543210',
-            'password' => \Hash::make('12345678'),
+            'password' => \Hash::make('password'),
             'email_verified_at' => now(),
             'phone_verified_at' => now(),
         ]);

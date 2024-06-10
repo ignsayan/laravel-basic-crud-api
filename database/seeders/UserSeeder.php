@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
         \DB::transaction(function () {
 
             for ($i = 0; $i < 10; $i++) {
+
                 $user = User::create([
                     'uuid' => str()->uuid(),
                     'name' => fake()->name(),
@@ -23,11 +24,8 @@ class UserSeeder extends Seeder
                     'phone_no' => fake()->phoneNumber(),
                     'password' => \Hash::make('12345678'),
                 ]);
-            }
-
-            $user->each(function ($user) {
                 $user->assignRole(User::ROLE_USER);
-            });
+            }
         });
     }
 }
