@@ -7,16 +7,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchParams = $request->query('search');
         $users = User::whereHas('roles', function ($query) {
             return $query->where('name', User::ROLE_USER);
+        })->when($searchParams != '', function ($query) use ($searchParams) {
+            return $query->where(function ($sub_query) use ($searchParams) {
+                return $sub_query->where('name', 'REGEXP', $searchParams)
+                    ->orWhere('email', 'REGEXP', $searchParams)
+                    ->orWhere('phone_no', 'REGEXP', $searchParams);
+            });
         })->paginate(10);
         return (new JsonResourceResponse(new UserResource($users), 200, ''))->response();
     }
