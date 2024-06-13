@@ -1,6 +1,7 @@
 <?php
 
-use App\Modules\User\Http\Controllers\APi\UserController;
+use App\Modules\User\Http\Controllers\Api\MediaController;
+use App\Modules\User\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
    
     Route::apiResource('/users', UserController::class);
+    Route::post('/media/{user}', MediaController::class);
 });

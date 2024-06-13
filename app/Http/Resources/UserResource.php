@@ -14,6 +14,13 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return array_merge(
+            parent::toArray($request),
+            [
+                'role' => $this->roles->pluck('name')->first(),
+                'avatar' => $this->media->contains('collection_name', 'avatar') ? $this->getFirstMediaUrl('avatar') : null,
+                'banner' => $this->media->contains('collection_name', 'banner') ? $this->getFirstMediaUrl('banner') : null,
+            ]
+        );
     }
 }

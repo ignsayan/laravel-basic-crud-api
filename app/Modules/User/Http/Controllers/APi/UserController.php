@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\User\Http\Controllers\APi;
+namespace App\Modules\User\Http\Controllers\Api;
 
 use App\Extends\JsonResourceResponse;
 use App\Http\Controllers\Controller;
