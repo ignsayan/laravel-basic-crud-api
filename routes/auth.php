@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use App\Modules\Authentication\Http\Controllers\Api\AuthenticationController;
 use App\Modules\Authentication\Http\Controllers\Api\EmailVerificationController;
 use App\Modules\Authentication\Http\Controllers\Api\ForgotPasswordController;

@@ -5,7 +5,7 @@ namespace App\Modules\Authentication\Http\Controllers\Api;
 use App\Extends\JsonResourceResponse;
 use App\Http\Controllers\Controller;
 use App\Modules\Authentication\Http\Requests\LoginRequest;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticationController extends Controller

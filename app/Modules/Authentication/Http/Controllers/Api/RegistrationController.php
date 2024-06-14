@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Authentication\Actions\RegisterAction;
 use App\Modules\Authentication\Http\Requests\RegisterRequest;
 use App\Models\User;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use Illuminate\Validation\ValidationException;
 
 class RegistrationController extends Controller

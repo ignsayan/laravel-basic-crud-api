@@ -6,7 +6,7 @@ use App\Extends\JsonResourceResponse;
 use App\Http\Controllers\Controller;
 use App\Modules\Authentication\Actions\GoogleAuthAction;
 use App\Models\User;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 

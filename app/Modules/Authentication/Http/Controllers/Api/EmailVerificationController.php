@@ -5,7 +5,7 @@ namespace App\Modules\Authentication\Http\Controllers\Api;
 use App\Extends\JsonResourceResponse;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 
 class EmailVerificationController extends Controller

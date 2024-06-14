@@ -4,7 +4,7 @@ namespace App\Modules\User\Http\Controllers\Api;
 
 use App\Extends\JsonResourceResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -16,16 +16,22 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $searchParams = $request->query('search');
-        $users = User::whereHas('roles', function ($query) {
-            return $query->where('name', User::ROLE_USER);
-        })->when($searchParams != '', function ($query) use ($searchParams) {
-            return $query->where(function ($sub_query) use ($searchParams) {
-                return $sub_query->where('name', 'REGEXP', $searchParams)
-                    ->orWhere('email', 'REGEXP', $searchParams)
-                    ->orWhere('phone_no', 'REGEXP', $searchParams);
+        $search = $request->query('search');
+
+        $users = User::when($search != '', function ($query) use ($search) {
+            return $query->where(function ($sub_query) use ($search) {
+                return $sub_query->where('name', 'REGEXP', $search)
+                    ->orWhere('email', 'REGEXP', $search)
+                    ->orWhere('phone_no', 'REGEXP', $search);
             });
         })->paginate(10);
+
+        $users->each(function ($user) {
+            $user->avatar = $user->getFirstMediaUrl('avatar');
+            $user->banner = $user->getFirstMediaUrl('banner');
+            return $user;
+        });
+
         return (new JsonResourceResponse(new UserResource($users), 200, ''))->response();
     }
 

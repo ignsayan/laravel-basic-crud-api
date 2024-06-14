@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Authentication\Actions\ResetPasswordAction;
 use App\Modules\Authentication\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Validation\ValidationException;
 

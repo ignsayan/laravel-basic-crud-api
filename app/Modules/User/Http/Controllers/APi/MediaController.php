@@ -4,7 +4,7 @@ namespace App\Modules\User\Http\Controllers\Api;
 
 use App\Extends\JsonResourceResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Modules\User\Http\Resources\UserResource;
 use App\Models\User;
 use App\Modules\User\Http\Requests\MediaRequest;
 use Illuminate\Validation\ValidationException;
