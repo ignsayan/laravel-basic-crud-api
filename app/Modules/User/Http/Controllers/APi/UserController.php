@@ -18,7 +18,10 @@ class UserController extends Controller
     {
         $search = $request->query('search');
 
-        $users = User::when($search != '', function ($query) use ($search) {
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', User::ROLE_USER);
+        })
+            ->when($search != '', function ($query) use ($search) {
             return $query->where(function ($sub_query) use ($search) {
                 return $sub_query->where('name', 'REGEXP', $search)
                     ->orWhere('email', 'REGEXP', $search)
